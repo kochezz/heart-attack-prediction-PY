@@ -11,12 +11,25 @@ scaler = joblib.load("models/standard_scaler.pkl")
 # Set page config
 st.set_page_config(page_title="Heart Attack Risk Assessment", layout="centered")
 
-# Dynamically load image path
-logo_path = os.path.join("assets", "BEDA_logo2WHITE.png")
-st.image(logo_path, width=200)
+# Base directory path
+BASE_DIR = os.path.dirname(__file__)
+infographic_path = os.path.join(BASE_DIR, "assets", "image_01.png")
+logo_path = os.path.join(BASE_DIR, "assets", "BEDA_logo2WHITE.png")
 
+# Display logo at the top (small size)
+if os.path.exists(logo_path):
+    st.image(logo_path, width=120)
+
+# App Title and Introduction
 st.title("🫀 Heart Attack Risk Assessment")
-st.markdown("Enter patient details below to assess the likelihood of a heart attack.")
+
+st.markdown("""
+This application was developed using a logistic regression model trained on real clinical patient data. Features such as age, gender, blood pressure, heart rate, and cardiac biomarkers like CK-MB and Troponin were used to estimate the likelihood of a heart attack event. The model was trained and validated using standard machine learning best practices, including data scaling, cross-validation, and feature engineering.
+""")
+
+# Display the educational infographic image using updated parameter
+if os.path.exists(infographic_path):
+    st.image(infographic_path, use_container_width=True)
 
 # Sidebar form for input
 with st.sidebar.form("patient_form"):
@@ -45,12 +58,16 @@ if submitted:
         st.markdown("Please consult a medical professional immediately.")
     else:
         st.success(f"✅ Low to Moderate Risk ({probability*100:.2f}%)")
-        st.markdown("Maintain healthy lifestyle and monitor regularly.")
+        st.markdown("Maintain a healthy lifestyle and monitor regularly.")
 
     st.markdown("---")
-    st.markdown("**Disclaimer:** This tool is for educational/demo purposes only and not for clinical use.")
 
-# Contact Form
+# Disclaimer section
+st.markdown("#### ⚠️ Disclaimer")
+st.markdown("*This application is intended for educational purposes only. It does not offer medical advice, diagnosis or treatment.*")
+
+# Contact section
+st.markdown("---")
 st.markdown("### 📬 Contact Us")
 with st.form("contact_form"):
     name = st.text_input("Your Name")
@@ -60,6 +77,5 @@ with st.form("contact_form"):
     if contact_submit:
         st.success("Thank you! Your message has been received.")
 
-# Footer
 st.markdown("---")
 st.markdown("© 2025 William C. Phiri – Powered by BEDA | Email: wphiri@beda.ie")
