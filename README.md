@@ -1,6 +1,11 @@
 
 # Heart Attack Risk Prediction using Logistic Regression
 
+[![Python](https://img.shields.io/badge/Built%20With-Python-blue?logo=python)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)]()
+[![Data](https://img.shields.io/badge/Data-Cleaned-lightgrey)]()
+
 This project builds a logistic regression model to identify patients at risk of experiencing a heart attack based on clinical and demographic features. The model is trained on a clean medical dataset and deployed via a Streamlit dashboard for real-time prediction.
 
 ---
