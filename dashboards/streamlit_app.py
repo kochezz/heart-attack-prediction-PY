@@ -2,6 +2,7 @@
 import streamlit as st
 import numpy as np
 import joblib
+import os
 
 # Load model and scaler
 model = joblib.load("models/logreg_heart_attack_model.pkl")
@@ -10,8 +11,10 @@ scaler = joblib.load("models/standard_scaler.pkl")
 # Set page config
 st.set_page_config(page_title="Heart Attack Risk Assessment", layout="centered")
 
-# Display logo
-st.image("dashboards/assets/BEDA_logo2WHITE.png", width=200)
+# Dynamically load image path
+logo_path = os.path.join("assets", "BEDA_logo2WHITE.png")
+st.image(logo_path, width=200)
+
 st.title("🫀 Heart Attack Risk Assessment")
 st.markdown("Enter patient details below to assess the likelihood of a heart attack.")
 
